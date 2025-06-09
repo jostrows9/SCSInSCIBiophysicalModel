@@ -4,7 +4,7 @@ from neuron import h
 class MotoneuronNoDendrites(Cell):
 	"""
 	The is a model of the motoneuron soma, as developed by McIntyre 2002.
-	This model offers also the possibility to simulate the effect of 5-HT as in Booth et al. 1997.
+	This model offers the possibility to simulate the effect of 5-HT as in Booth et al. 1997.
 	"""
 
 	def __init__(self,type="WT", drug=True, L=36):
@@ -15,7 +15,6 @@ class MotoneuronNoDendrites(Cell):
 				inserted in the model or not (default = True).
 			L: motoneuron diameter.
 		"""
-
 		Cell.__init__(self)
 
 		# Define parameters
