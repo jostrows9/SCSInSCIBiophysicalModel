@@ -67,7 +67,7 @@ def run_fine_motor_task_simulation(scs_amp: float,
         scs_neurons = nf.create_input_neurons(num_scs_effective,scs_freq,0)
         scs_pulse_times = nf.create_spike_recorder_input_neurons(scs_neurons)
 
-    #### Create a population of inhomogeneous supraspinal pulses and record its spikes
+    # Create a population of inhomogeneous supraspinal pulses and record its spikes
     if num_supraspinal > 0: 
         supraspinal_neurons = nf.create_inhomogeneous_input_neurons(num_supraspinal, rate_supraspinal, simulation_duration, frequency=supraspinal_inhomogenous_rate)
         supraspinal_spike_times = nf.create_spike_recorder_input_neurons(supraspinal_neurons)
@@ -132,20 +132,21 @@ def run_fine_motor_task_simulation(scs_amp: float,
         plt.subplots(3, 1, sharex='col')
         plt.suptitle(f'Fine Motor Task:\n {scs_amp} SCS Amp, {scs_freq} SCS Freq,\n {num_supraspinal} Supraspinal Inputs', fontsize=8)
 
-        binned_time_vector = [x for x in range(0, simulation_duration-100, 100)]
-        
         # Plot generated force
         ax = plt.subplot(3, 1, 1)
-        #force = at.firing_rate_to_force(mn_spike_times, simulation_time=simulation_duration)
-        
+        force = at.firing_rate_to_force(mn_spike_times, simulation_duration)
+        pt.plot_time_series_data(ax, [t for t in range(len(force))], force, 'Force (Nm)')
+
+        bin_size = 100
+        binned_time_vector = [x for x in range(int(bin_size/2), simulation_duration-int(bin_size/2), bin_size)]
         # Plot motoneuron binned firing rate (Hz)
         ax = plt.subplot(3, 1, 2)
-        mn_fr = at.bin_fr_hz(mn_spike_times, simulation_duration)    
+        mn_fr = at.bin_fr_hz(mn_spike_times, simulation_duration, bin_size=bin_size)    
         pt.plot_time_series_data(ax, binned_time_vector, mn_fr, ylabel='Motoneuron firing\n rate (Hz)')
 
         # Plot supraspinal binned firing rate (Hz)
         ax = plt.subplot(3, 1, 3)
-        supra_fr = at.bin_fr_hz(supraspinal_spike_times, simulation_duration)
+        supra_fr = at.bin_fr_hz(supraspinal_spike_times, simulation_duration, bin_size=bin_size)
         pt.plot_time_series_data(ax, binned_time_vector, supra_fr, ylabel='Supraspinal firing\n rate (Hz)')
         ax.set_xlabel('Time (ms)', fontsize=8)
 
@@ -157,10 +158,8 @@ if __name__ == '__main__':
     scs_amp = 0.5
     scs_freq = 40
     perc_supra_intact = 0.2
-    simulation_duration = 1000
 
     run_fine_motor_task_simulation(scs_amp, 
                                     scs_freq, 
                                     perc_supra_intact, 
-                                    simulation_duration=simulation_duration,
                                     plot_sim=True)

@@ -74,7 +74,7 @@ def record_mn_membrane_potential_supraspinal_scs_simulation(scs_amp: float,
 
     # Create a population of SCS pulses and record their spikes
     if num_scs_effective > 0:
-        scs_neurons = nf.create_input_neurons(num_scs_effective,scs_freq,0)
+        scs_neurons = nf.create_input_neurons(num_scs_effective, scs_freq, 0, first_spike=scs_start)
         scs_pulse_times = nf.create_spike_recorder_input_neurons(scs_neurons)
 
     # Create a population of supraspinal neurons and record their spikes
