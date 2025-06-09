@@ -1,0 +1,5 @@
+neuron 
+matplotlib 
+numpy 
+scipy 
+pickle
