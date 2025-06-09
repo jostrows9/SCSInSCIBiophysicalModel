@@ -20,8 +20,11 @@ The rest of the required packages can be found in `requirements.txt` and can be 
 
 This repository includes three scripts which are the generic versions of the main simulations included in Balaguer et al., 2025. A general description of these scripts, their use case, and the corresponding figure(s) can be found below. Information on the exact use of each script can be found in the function descriptions. 
 
-- `record_mn_membrane_potential_supraspinal_scs_simulation`: Records a motoneuron membrane potential with (1) supraspinal input alone, (2) SCS input alone, and (3) the combination of supraspinal and SCS input. This script can be used to visualize how supraspinal and SCS inputs interact in the motoneuron membrane, as in Figure 2a-c, Figure 7a, and Figure 8b (Balaguer et al., 2025).
+- `record_mn_membrane_potential_supraspinal_scs_simulation`: 
+Records a motoneuron membrane potential with (1) supraspinal input alone, (2) SCS input alone, and (3) the combination of supraspinal and SCS input. This script can be used to visualize how supraspinal and SCS inputs interact in the motoneuron membrane, as in Figure 2a-c, Figure 7a, and Figure 8b (Balaguer et al., 2025).
+
 - `run_mn_pool_supraspinal_scs_simulation`: Simulates a motoneuron pool (N=100) with continuous SCS and supraspinal inputs. This script underlies the bulk of the simulations in Balaguer et al., 2025 (Figure 2e-h, Figure 3, Figure 4a-k, Figure 7b-c, and Figure 8c-f).
+
 - `run_fine_motor_task_simulation`: Simulates a fine motor task, during which the brain input fluxuates as a sinusoidal wave. This script can be used to visualize how SCS improves performance in a fine motor task after lesion, as in Figure 4l-n and Figure 8d (Balaguer et al., 2025).
 
 Each script can be run from the home directory with the following: 
