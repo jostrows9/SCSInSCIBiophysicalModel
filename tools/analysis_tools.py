@@ -1,12 +1,12 @@
 import numpy as np
 
-def spike_times(spikes, dt=1):
+def convert_to_spike_times(spikes, dt=1):
     """
     This function trasforms a vector 0 and 1 into a vector
     of spikes times to plot a raster. The units depend on the dt (ms).
     """
-    spike_timess = dt*np.where(spikes==1)[0]
-    return spike_timess
+    spike_times = dt*np.where(spikes==1)[0]
+    return spike_times
 
 
 def inter_spikes_intervals(spikes_times):
@@ -14,20 +14,20 @@ def inter_spikes_intervals(spikes_times):
     This function trasforms a vector of spikes_times into a vector of spikes time
     intervals.
     """
-    isi=np.diff(spikes_times)
+    isi = np.diff(spikes_times)
     return isi
 
 
-def inter_spikes_intervals_normalize(spikes,period):
+def inter_spikes_intervals_normalize(spikes, period):
     """
     This function trasforms an array of spikes (NMN x T) to a vector of normalized spike_times.
     """
-    n_neurons,_=np.shape(spikes)
+    n_neurons, _ = np.shape(spikes)
 
-    spike_times_aux=[ spike_times(spikes[ineuron]) for ineuron in range(n_neurons)]
-    inter_spike_interval=np.concatenate([ inter_spikes_intervals(spike_times_aux[ineuron]) for ineuron in range(n_neurons)] )
+    spike_times_aux = [convert_to_spike_times(spikes[ineuron]) for ineuron in range(n_neurons)]
+    inter_spike_interval = np.concatenate([ inter_spikes_intervals(spike_times_aux[ineuron]) for ineuron in range(n_neurons)] )
 
-    inter_spike_interval_norm=inter_spike_interval/period
+    inter_spike_interval_norm = inter_spike_interval/period
 
     return inter_spike_interval_norm
 
@@ -42,7 +42,7 @@ def bin_fr_hz(data, time, bin_size=100):
     return counts/100/len(data)*1000
 
 
-def firing_rate_to_force(spikes, norm=None):
+def firing_rate_to_force(spikes, simulation_time, norm=None):
     """
     Spikes to force folllowing 'Models of Recruiment and Rate Coding Organization
     in Motor Unit Pools' (Fluglevant det al 1993).
@@ -66,7 +66,7 @@ def firing_rate_to_force(spikes, norm=None):
     np.random.shuffle(T)
 
     # Compute mean ISI. First aproximation of the entire simuation
-    sp_times = [spike_times(spikes[ineuron]) for ineuron in range(Nmn)]
+    sp_times = [convert_to_spike_times(spikes[ineuron]) for ineuron in range(Nmn)]
     mean_isi = [np.mean( inter_spikes_intervals(sp_times[ineuron]) ) for ineuron in range(Nmn)]
 
     g = np.zeros(Nmn)

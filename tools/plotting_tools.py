@@ -44,5 +44,5 @@ def plot_time_series_data(ax,
 
     ax.set_ylabel(ylabel, fontsize=8)
     ax.yaxis.set_tick_params(labelsize=8)
-    ax.yaxis.set_tick_params(labelsize=8)
+    ax.xaxis.set_tick_params(labelsize=8)
     

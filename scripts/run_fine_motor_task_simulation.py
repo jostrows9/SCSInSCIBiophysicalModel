@@ -70,7 +70,7 @@ def run_fine_motor_task_simulation(scs_amp: float,
     #### Create a population of inhomogeneous supraspinal pulses and record its spikes
     if num_supraspinal > 0: 
         supraspinal_neurons = nf.create_inhomogeneous_input_neurons(num_supraspinal, rate_supraspinal, simulation_duration, frequency=supraspinal_inhomogenous_rate)
-        supraspinal_spikes = nf.create_spike_recorder_input_neurons(supraspinal_neurons)
+        supraspinal_spike_times = nf.create_spike_recorder_input_neurons(supraspinal_neurons)
 
     # Create a population of MNs and record their spikes
     mn_L = mn_avg_diameter + np.random.randn(num_mn)*0.1*mn_avg_diameter
@@ -136,15 +136,15 @@ def run_fine_motor_task_simulation(scs_amp: float,
         
         # Plot generated force
         ax = plt.subplot(3, 1, 1)
+        #force = at.firing_rate_to_force(mn_spike_times, simulation_time=simulation_duration)
         
-        import pdb; pdb.set_trace()
         # Plot motoneuron binned firing rate (Hz)
         ax = plt.subplot(3, 1, 2)
         mn_fr = at.bin_fr_hz(mn_spike_times, simulation_duration)    
         pt.plot_time_series_data(ax, binned_time_vector, mn_fr, ylabel='Motoneuron firing\n rate (Hz)')
 
         # Plot supraspinal binned firing rate (Hz)
-        ax = plt.subplot(3, 1, 2)
+        ax = plt.subplot(3, 1, 3)
         supra_fr = at.bin_fr_hz(supraspinal_spike_times, simulation_duration)
         pt.plot_time_series_data(ax, binned_time_vector, supra_fr, ylabel='Supraspinal firing\n rate (Hz)')
         ax.set_xlabel('Time (ms)', fontsize=8)
@@ -153,14 +153,14 @@ def run_fine_motor_task_simulation(scs_amp: float,
         plt.show()
 
 
-
-
 if __name__ == '__main__':
     scs_amp = 0.5
     scs_freq = 40
     perc_supra_intact = 0.2
+    simulation_duration = 1000
 
     run_fine_motor_task_simulation(scs_amp, 
                                     scs_freq, 
                                     perc_supra_intact, 
+                                    simulation_duration=simulation_duration,
                                     plot_sim=True)
