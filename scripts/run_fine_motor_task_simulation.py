@@ -26,7 +26,7 @@ def run_fine_motor_task_simulation(scs_amp: float,
         - scs_amp: float, amplitude of stimulation (% of max # of SCS inputs)
         - scs_freq: int, frequency of stimulation (Hz)
         - perc_supra_intact: float, remaining supraspinal inputs (% of intact model = 300)
-        - supraspinal_inhomogenous_rate: int, rate of sinusodal wave for inhomogenous Poisson supraspinal input (Hz)
+        - supraspinal_inhomogenous_rate: int, rate of sinusoidal wave for inhomogenous Poisson supraspinal input (Hz)
         - simulation_duration: int, length of simulation (ms)
         - save_data_folder: str, name of folder to save data (if not provided, data will not be saved)
         - plot_sim: bool, plot simulation results
