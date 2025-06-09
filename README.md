@@ -26,7 +26,7 @@ This repository includes three scripts which are the generic versions of the mai
 
 Each script can be run from the home directory with the following: 
 
-```python scripts/[script_name].py``
+```python scripts/[script_name].py```
 
 ### References 
 
