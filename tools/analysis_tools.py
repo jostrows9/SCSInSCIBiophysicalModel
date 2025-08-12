@@ -59,6 +59,7 @@ def firing_rate_to_force(spike_times, simulation_duration, norm=None):
     """
     Spikes to force folllowing 'Models of Recruiment and Rate Coding Organization
     in Motor Unit Pools' (Fluglevant det al 1993).
+    
     Here we assume that the time bin is 1 ms.
     """
     spikes_binary = np.array([convert_to_binary_spike_array(spike_times[i], simulation_duration) for i in range(len(spike_times))])

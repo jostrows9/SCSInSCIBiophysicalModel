@@ -26,7 +26,12 @@ This repository includes three scripts which are the generic versions of the mai
 
 Each script can be run from the home directory with the following: 
 
-```python scripts/[script_name].py``
+```python modeling_scripts/[script_name].py``
+
+This repo also contains functions to perform the analysis of EMG data seen in Balaguer et al., 2025. These functions are located in `analysis_scripts/emg_analysis.py`: 
+
+- `calculate_p2p_amplitude`: Calculates the peak-to-peak amplitude of EMG responses to stimulation.
+- `compute_isi_distribution`: Returns computed interspike-interval (ISI) histogram.
 
 ### References 
 
