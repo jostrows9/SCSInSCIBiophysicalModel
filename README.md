@@ -29,7 +29,7 @@ Records a motoneuron membrane potential with (1) supraspinal input alone, (2) SC
 
 Each script can be run from the home directory with the following: 
 
-```python modeling_scripts/[script_name].py``
+```python modeling_scripts/[script_name].py```
 
 This repo also contains functions to perform the analysis of EMG data seen in Balaguer et al., 2025. These functions are located in `analysis_scripts/emg_analysis.py`: 
 
